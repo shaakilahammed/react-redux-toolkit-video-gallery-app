@@ -1,7 +1,11 @@
+import Home from './pages/Home';
+import Video from './pages/Video';
+
 function App() {
   return (
     <>
-      <h1>Hello</h1>
+      {/* <Home /> */}
+      <Video />
     </>
   );
 }
