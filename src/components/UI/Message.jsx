@@ -1,7 +1,6 @@
 import PropTypes from 'prop-types';
 
-const Message = ({ children }) => {
-  console.log(children);
+const Message = ({ children = 'Something went wrong!' }) => {
   return <div className="col-span-12">{children}</div>;
 };
 
