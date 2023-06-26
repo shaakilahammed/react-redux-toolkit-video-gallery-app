@@ -10,14 +10,6 @@ const TagList = () => {
     dispatch(fetchTags());
   }, [dispatch]);
 
-  // let content;
-  // if (isLoading) content = <Message>Loading....</Message>;
-  // if (!isLoading && isError) content = <Message>{error}</Message>;
-  // if (!isLoading && !isError && tags?.length === 0)
-  //   content = <Message>No tags found....</Message>;
-  // if (!isLoading && !isError && tags?.length > 0)
-  //   content = tags.map((tag) => <Tag key={tag.id} tag={tag} />);
-
   return (
     tags?.length > 0 && (
       <section>
