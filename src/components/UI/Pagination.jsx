@@ -1,17 +1,19 @@
+import { useSelector } from 'react-redux';
+import PageItem from './PageItem';
+// import PageItem from './PageItem';
+
 const Pagination = () => {
+  const { totalPages } = useSelector((state) => state.videos);
+  const pages = [];
+  for (let i = 0; i < totalPages; i++) {
+    pages.push(i + 1);
+  }
   return (
     <section className="pt-12">
       <div className="max-w-7xl mx-auto px-5 py-6 lg:px-0 flex gap-2 justify-end">
-        <div className="bg-blue-600 text-white px-4 py-1 rounded-full">1</div>
-        <div className="bg-blue-100 text-blue-600 px-4 py-1 rounded-full">
-          2
-        </div>
-        <div className="bg-blue-100 text-blue-600 px-4 py-1 rounded-full">
-          3
-        </div>
-        <div className="bg-blue-100 text-blue-600 px-4 py-1 rounded-full">
-          4
-        </div>
+        {pages.map((page, index) => (
+          <PageItem key={index} page={page} />
+        ))}
       </div>
     </section>
   );

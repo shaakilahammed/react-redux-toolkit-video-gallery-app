@@ -6,13 +6,14 @@ const initialState = {
   isLoading: false,
   isError: false,
   error: '',
+  totalPages: 0,
 };
 
 export const fetchVideos = createAsyncThunk(
   'videos/fetchVideos',
-  async ({ tags, searchText }) => {
-    const videos = await getVideos(tags, searchText);
-    return videos;
+  async ({ tags, searchText, page }) => {
+    const { videos, totalPages } = await getVideos(tags, searchText, page);
+    return { videos, totalPages };
   }
 );
 
@@ -27,13 +28,15 @@ const videosSlice = createSlice({
       })
       .addCase(fetchVideos.fulfilled, (state, action) => {
         state.isLoading = false;
-        state.videos = action.payload;
+        state.videos = action.payload.videos;
+        state.totalPages = action.payload.totalPages;
       })
       .addCase(fetchVideos.rejected, (state, action) => {
         state.isLoading = false;
         state.videos = [];
         state.isError = true;
         state.error = action.error?.message;
+        state.totalPages = 0;
       });
   },
 });

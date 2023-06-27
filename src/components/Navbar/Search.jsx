@@ -1,6 +1,6 @@
 import searchImage from '../../assets/search.svg';
 import { useDispatch, useSelector } from 'react-redux';
-import { searched } from '../../features/filter/filterSlice';
+import { searched, setCurrentPage } from '../../features/filter/filterSlice';
 import { useMatch, useNavigate } from 'react-router-dom';
 const Search = () => {
   const dispatch = useDispatch();
@@ -13,6 +13,10 @@ const Search = () => {
       navigate('/');
     }
   };
+  const handleOnChange = (e) => {
+    dispatch(searched(e.target.value));
+    dispatch(setCurrentPage(1));
+  };
   // const [input, setInput] = useState('');
   return (
     <div className="border border-slate-200 flex items-center bg-white h-10 px-5 rounded-lg text-sm ring-emerald-200">
@@ -23,7 +27,7 @@ const Search = () => {
           name="search"
           placeholder="Search"
           value={search}
-          onChange={(e) => dispatch(searched(e.target.value))}
+          onChange={handleOnChange}
         />
       </form>
       <img
